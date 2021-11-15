@@ -9,15 +9,31 @@ public class Utilisateur {
         return user.isUser(login,password);
     }
     //ajoute un nouvel utilisateur
-    public static void addUser(String login,String password)
+    public static void addUser(String login,String password,String pseudo)
     {
 
-       user.addUser(login,password);
+       user.addUser(login,password,pseudo);
     }
     //supprime un utilisateur
     public static void delUser(int id)
     {
         //todo
     }
-
+    //renvoi le meilleur score de l'utilisateur
+    public static String getScore(String pseudo){
+        String s=user.getScore(pseudo);
+        if(s.equals("")){
+            return "-1";
+        }
+        else return s;
+    }
+    //met à jour le meilleur score
+    public static void addScore(String pseudo,int score){
+        user.addScore(pseudo,score);
+    }
+    //verifie si l'utilisateur à un pseudo
+    public static String getPseudo(String login,String password)
+    {
+        return user.getPseudo(login,password);
+    }
 }

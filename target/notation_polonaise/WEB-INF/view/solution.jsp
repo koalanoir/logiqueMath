@@ -1,18 +1,17 @@
 <%--
   Created by IntelliJ IDEA.
   User: doria
-  Date: 06/11/2021
-  Time: 15:09
+  Date: 12/11/2021
+  Time: 20:38
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" type="text/css" href="css" />
-    <meta charset="utf-8" />
+    <title>solution</title>
     <style>
-        <style>
         body{
             background-color: slategrey;
             backface-visibility: initial;
@@ -34,12 +33,8 @@
             border: none;
         }
     </style>
-    <title> acceuil</title>
 </head>
 <body>
-<p>Bienvenu <c:out value="${ pseudo }" /> </p><br/><br/>
-<div class="central"><form action="evaluation" method="post">
-    <button type="submit">commencer une serie</button>
-</form></div>
+<div class="central"><h1><c:out value="${ score }" /></h1></div> 
 </body>
-</html>
+<html/>

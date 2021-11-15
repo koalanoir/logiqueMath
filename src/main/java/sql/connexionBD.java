@@ -43,11 +43,11 @@ public class connexionBD {
     public Statement getStatement() {
         return statement;
     }
-    public String addUser(String log,String pwd)
+    public String addUser(String log,String pwd,String psd)
     {
         try {
 
-            statement.executeUpdate("INSERT INTO user(login,password) VALUES ('"+log+"','"+pwd+"');");
+            statement.executeUpdate("INSERT INTO user(login,password,pseudo) VALUES ('"+log+"','"+pwd+"','"+psd+"');");
             return "inscrription confirmé";
         }
         catch(SQLException throwables)
@@ -70,6 +70,48 @@ public class connexionBD {
         {
             System.out.print(e);
             return false;
+        }
+    }
+    public String getPseudo(String log,String pwd)
+    {
+        ResultSet res=null;
+        try {
+            res = statement.executeQuery("SELECT pseudo FROM user WHERE login='" + log + "' AND password='"+pwd+"';");
+            while (res.next()) {
+                return res.getString("pseudo");
+            }
+            return "";
+        }
+        catch (SQLException e)
+        {
+            System.out.print(e);
+            return "";
+        }
+    }
+    public String getScore(String psd){
+        ResultSet res=null;
+        try {
+            res = statement.executeQuery("SELECT meilleur_score FROM jeu WHERE pseudo='" + psd + "' ;");
+            while (res.next()) {
+                return res.getString("meilleur_score");
+            }
+            return "";
+        }
+        catch (SQLException e)
+        {
+            System.out.print(e);
+            return "";
+        }
+    }
+
+    public void addScore(String psd,int s){
+        try {
+            statement.executeUpdate("INSERT INTO jeu(pseudo,meilleur_score) VALUES ('"+psd+"','"+s+"');");
+
+        }
+        catch(SQLException throwables)
+        {
+            throwables.printStackTrace();
         }
     }
 }

@@ -6,11 +6,40 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
 <head>
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="css" />
+    <meta charset="utf-8" />
+    <style>
+        <style>
+        body{
+            background-color: slategrey;
+            backface-visibility: initial;
+            border: 2px;
+        }
+
+        .central{
+            margin-top: 10%;
+            margin-left:30%;
+        }
+        a{
+            text-decoration: none;
+        }
+        a:hover{
+            background-color: bisque;
+        }
+        button:hover{
+            background-color: coral;
+            border: none;
+        }
+    </style>
+    <title> acceuil</title>
 </head>
 <body>
-    <h1>connexion !</h1>
+<p>Bienvenu <c:out value="${ pseudo }" /> </p><br/><br/>
+<div class="central"><form action="evaluation" method="post">
+    <button type="submit">commencer une serie</button>
+</form></div>
 </body>
 </html>
