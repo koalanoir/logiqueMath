@@ -1,31 +1,11 @@
-<!Doctype html>
-<head>
-    <meta charset="utf-8" />
-    <style>
-        body{
-            background-color: slategrey;
-            backface-visibility: initial;
-            border: 2px;
-        }
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-        .central {
-            margin-top: 10%;
-            margin-left:30%;
-        }
-        a{
-            text-decoration: none;
-        }
-        a:hover{
-            background-color: bisque;
-        }
-        button:hover{
-            background-color: coral;
-            border: none;
-        }
-    </style>
+<html lang="fr">
+<head>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/global.css">
 </head>
 <body>
-<div class="central">
+<div class="contener">
 <form action="home" method="post">
     nom d'utilisateur : <input type="text" name="user_name"><br/><br/>
     mot de passe :      <input type="password" name="user_pwd"><br/><br/>

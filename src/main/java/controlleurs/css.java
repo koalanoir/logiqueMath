@@ -6,11 +6,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-@WebServlet(urlPatterns = "/css")
+@WebServlet(urlPatterns = "/homeimg")
 public class css extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws
             ServletException, IOException {
-        req.getRequestDispatcher("/css/global.css");
+        req.getRequestDispatcher("/src/main/css/global.css");
     }
 }

@@ -35,6 +35,6 @@
     </style>
 </head>
 <body>
-<div class="central"><h1><c:out value="${ score }" /></h1></div> 
+<div class="central"><h1><c:out value="${ score }" /></h1></div>
 </body>
 <html/>

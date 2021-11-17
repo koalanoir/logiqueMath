@@ -114,4 +114,14 @@ public class connexionBD {
             throwables.printStackTrace();
         }
     }
+
+    public void reinitScore(String psd){
+        try{
+            statement.executeUpdate("DELETE FROM jeu * WHERE 'pseudo'='"+psd+"';");
+        }
+        catch(SQLException throwables)
+        {
+            throwables.printStackTrace();
+        }
+    }
 }

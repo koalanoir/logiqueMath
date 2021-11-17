@@ -2,6 +2,7 @@ package controlleurs;
 
 import classused.GenererExpression;
 import classused.Utilisateur;
+import classused.partie;
 import classused.util.CreateCookie;
 
 import javax.servlet.ServletException;
@@ -21,16 +22,10 @@ public class partieController extends HttpServlet {
         HttpSession session = req.getSession();
         String p=CreateCookie.getCookieValue(req,"pseudo");
         System.out.print(p);
-        for(int i=0;i<10;i++){
-
-            String ex=GenererExpression.getExpression();
-            session.setAttribute("expression"+i, ex);
-            String s=GenererExpression.getEvaluation(ex);
-            session.setAttribute("solution"+i, s);
-
-        }
-
-
+        partie part=new partie();
+        session.setAttribute("serie",part.getSerie());
+        session.setAttribute("solutions",part.getSolution());
+        session.setAttribute("fait",false);
         req.getRequestDispatcher("/WEB-INF/view/evaluation.jsp").forward(req, resp);
     }
 }

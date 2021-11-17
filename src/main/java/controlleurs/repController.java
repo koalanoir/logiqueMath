@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 @WebServlet(urlPatterns = "/verification")
 public class repController extends HttpServlet {
@@ -25,9 +26,11 @@ public class repController extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int score=0;
         HttpSession session=req.getSession();
+
         for(int i=0;i<10;i++){
             String rep=req.getParameter("rep"+i);
-            int solution=Integer.parseInt(session.getAttribute("solution"+i).toString());
+            List<String> s= (List<String>) session.getAttribute("solutions");
+            int solution=Integer.parseInt(s.get(i));
             session.setAttribute("rep"+i,rep);
             if(rep.equals("")) score--;
             else if (!rep.equals("")&Integer.parseInt(rep) == solution) {score++ ;}
@@ -40,6 +43,7 @@ public class repController extends HttpServlet {
         }
         String res="votre score est de : "+score+"/10";
         CreateCookie.CreateCookie(req,resp,"score",res);
-        req.getRequestDispatcher("/WEB-INF/view/solution.jsp").forward(req, resp);
+        req.getSession().setAttribute("fait",true);
+        req.getRequestDispatcher("/WEB-INF/view/evaluation.jsp").forward(req, resp);
     }
 }
