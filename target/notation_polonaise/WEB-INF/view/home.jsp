@@ -20,16 +20,6 @@
     .contener{
     margin-top: 10%;
     margin-left:10%;
-    display: flex;
-    }
-    .gauche{
-    float: left;
-    padding-right: 5em;
-    padding-left: 5em;
-    }
-
-    .gauche:hover{
-    background-color: darkseagreen;
     }
     a{
     text-decoration: none;

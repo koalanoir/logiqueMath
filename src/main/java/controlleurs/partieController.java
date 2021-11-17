@@ -20,12 +20,13 @@ public class partieController extends HttpServlet {
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
+        String f="false";
         String p=CreateCookie.getCookieValue(req,"pseudo");
         System.out.print(p);
         partie part=new partie();
         session.setAttribute("serie",part.getSerie());
         session.setAttribute("solutions",part.getSolution());
-        session.setAttribute("fait",false);
+        CreateCookie.CreateCookie (req,resp,"fait",f);
         req.getRequestDispatcher("/WEB-INF/view/evaluation.jsp").forward(req, resp);
     }
 }

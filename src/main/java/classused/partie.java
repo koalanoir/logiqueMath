@@ -12,6 +12,9 @@ public class partie {
     private List<String> serie;
     private List<String> solutions;
     private List<String> propositions;
+
+
+
     public partie(){
         serie=new ArrayList<>();
         solutions=new ArrayList<>();

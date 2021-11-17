@@ -30,7 +30,8 @@
 </head>
 <body>
 <div class="contener">
-<form action="home" method="post">
+    <p style="background-color: darkseagreen ;width: 10em"><c:out value="${log}"/>
+        </p><form action="home" method="post">
     nom d'utilisateur : <input type="text" name="user_name"><br/><br/>
     mot de passe :      <input type="password" name="user_pwd"><br/><br/>
     <button type="submit">se connecter</button>

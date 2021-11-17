@@ -1,6 +1,7 @@
 package controlleurs;
 
 import classused.Utilisateur;
+import classused.partie;
 import classused.util.CreateCookie;
 
 import javax.servlet.ServletException;
@@ -26,22 +27,28 @@ public class repController extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int score=0;
         HttpSession session=req.getSession();
-
+        partie part=new partie();
+        String p=CreateCookie.getCookieValue(req,"pseudo");
+        String res="votre score est de : "+score+"/10";
+        List<String> s= (List<String>) session.getAttribute("serie");
+        List<String> e= (List<String>) session.getAttribute("solutions");
         for(int i=0;i<10;i++){
             String rep=req.getParameter("rep"+i);
-            List<String> s= (List<String>) session.getAttribute("solutions");
-            int solution=Integer.parseInt(s.get(i));
-            session.setAttribute("rep"+i,rep);
+            int solution=Integer.parseInt(e.get(i));
+            part.setProposition(rep);
             if(rep.equals("")) score--;
             else if (!rep.equals("")&Integer.parseInt(rep) == solution) {score++ ;}
         }
+        session.setAttribute("solution",e);
+        session.setAttribute("series",s);
+        session.setAttribute("rep",part.getPropositions());
         if(score<0){score=0;}
-        String p=CreateCookie.getCookieValue(req,"pseudo");
+
         if(Integer.parseInt(Utilisateur.getScore(p))<score){
             System.out.print(p);
             Utilisateur.addScore(p,score);
         }
-        String res="votre score est de : "+score+"/10";
+
         CreateCookie.CreateCookie(req,resp,"score",res);
         req.getSession().setAttribute("fait",true);
         req.getRequestDispatcher("/WEB-INF/view/evaluation.jsp").forward(req, resp);

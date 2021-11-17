@@ -2,11 +2,36 @@
 
 <html lang="fr">
 <head>
-    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/global.css">
+    <style>
+    body{
+    background-color: slategrey;
+    backface-visibility: initial;
+    border: 2px;
+    }
+    .contener{
+    margin-top: 10%;
+    margin-left:10%;
+    }
+
+    a{
+    text-decoration: none;
+    }
+    a:hover{
+    background-color: bisque;
+        width: 5em;
+        lengh: 3em;
+    }
+    button:hover{
+    background-color: coral;
+    border: none;
+    }
+    </style>
+
 </head>
 <body>
 <div class="contener">
-<form action="home" method="post">
+    <p style="background-color: darkseagreen ;width: 10em"><c:out value="${log}"/>
+        </p><form action="home" method="post">
     nom d'utilisateur : <input type="text" name="user_name"><br/><br/>
     mot de passe :      <input type="password" name="user_pwd"><br/><br/>
     <button type="submit">se connecter</button>
