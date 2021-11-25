@@ -36,7 +36,7 @@ public class repController extends HttpServlet {
             String rep=req.getParameter("rep"+i);
             int solution=Integer.parseInt(e.get(i));
             part.setProposition(rep);
-            if(rep.equals("")) score--;
+            if(rep.equals("")) ;
             else if (!rep.equals("")&Integer.parseInt(rep) == solution) {score++ ;}
         }
         session.setAttribute("solution",e);
