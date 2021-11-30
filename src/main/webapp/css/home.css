@@ -1,0 +1,30 @@
+.container {
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: #264653;
+}
+
+.container > h1 {
+	margin: 2rem 0;
+	color: white;
+}
+
+.container button {
+	margin: 2rem 0;
+	border: 5px solid #2a9d8f;
+	background-color: #2a9d8f;
+	font-size: 1.5rem;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	font-weight: bold;
+	transition: 150ms ease-in-out;
+	border-radius: 10px;
+}
+
+.container button:hover {
+	background-color: #264653;
+	color: white;
+}

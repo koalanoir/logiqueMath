@@ -1,0 +1,97 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	height: 100vh;
+	overflow: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #e76f51;
+	padding-bottom: 5rem;
+}
+
+.container > .header {
+	padding: 0 3rem;
+}
+.container > .header > * {
+	margin: 2rem 0;
+	color: white;
+	text-align: center;
+}
+
+.container button {
+	margin: 2rem 0;
+	border: 5px solid #f4a261;
+	background-color: #f4a261;
+	font-size: 1.5rem;
+	padding: 0.5rem 1rem;
+	cursor: pointer;
+	font-weight: bold;
+	transition: 150ms ease-in-out;
+	border-radius: 10px;
+}
+
+.container > .form > button:hover {
+	background-color: #e76f51;
+	color: white;
+}
+
+.container > .form {
+	display: flex;
+	flex-direction: column;
+}
+
+.container > .form > *:not(:nth-child(1)) {
+	margin: 1rem 0 0 0;
+}
+
+.form > div {
+	display: flex;
+	background-color: #f4a261;
+	border-radius: 999px;
+}
+
+.form > div > * {
+	border: 2px solid #f4a261;
+	transition: 150ms ease-in-out;
+}
+.form > div > span {
+	padding: 0.5rem 1rem;
+	border-right: none;
+	border-radius: 10px 0 0 10px;
+	background-color: #f4a261;
+}
+.form > div > input {
+	padding: 0.5rem;
+	border-radius: 0 10px 10px 0;
+	outline: none;
+}
+
+.form > div:focus-within > input {
+	background-color: #f4a261;
+}
+
+.results {
+	display: flex;
+	margin-top: 2rem;
+}
+
+.results > * {
+	background-color: #e76f51;
+	border: 5px solid #f4a261;
+	width: 150px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem 1rem;
+	border-radius: 10px;
+	font-weight: bolder;
+	color: #f4a261;
+}
+
+.results > :nth-child(2) {
+	margin: 0 1rem;
+}
