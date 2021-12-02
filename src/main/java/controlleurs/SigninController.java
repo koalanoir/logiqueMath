@@ -1,8 +1,8 @@
 package controlleurs;
 
+import classused.GenererExpression;
+import classused.Utilisateur;
 import classused.util.CreateCookie;
-import sql.connexionBD;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,14 +17,10 @@ public class SigninController extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String login = req.getParameter("user_name");
         String pwd = req.getParameter("user_pwd");
-        connexionBD user=new connexionBD();
 
         try {
-            if(user.isUser(login,pwd)){
-                CreateCookie.CreateCookie(req,resp,"pseudo",user.getPseudo(login,pwd));
-                System.out.print(user.getPseudo(login,pwd));
-                System.out.print("   cookie  :  ");
-                System.out.print(CreateCookie.getCookieValue(req,"pseudo"));
+            if(Utilisateur.isUser(login,pwd)){
+                CreateCookie.CreateCookie(req,resp,"pseudo",Utilisateur.getPseudo(login,pwd));
                 req.getRequestDispatcher("/WEB-INF/view/home.jsp").forward(req, resp);
             }
             else

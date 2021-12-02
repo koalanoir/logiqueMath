@@ -39,9 +39,7 @@ public class connexionBD {
     public Connection getCon() {
         return connexion;
     }
-    public void closeCon() throws SQLException {
-        connexion.close();
-    }
+
     public Statement getStatement() {
         return statement;
     }

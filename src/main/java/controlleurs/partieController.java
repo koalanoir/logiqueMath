@@ -1,5 +1,7 @@
 package controlleurs;
 
+import classused.GenererExpression;
+import classused.Utilisateur;
 import classused.partie;
 import classused.util.CreateCookie;
 
@@ -7,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet(urlPatterns = "/evaluation")
 public class partieController extends HttpServlet {

@@ -1,8 +1,8 @@
 package controlleurs;
 
+import classused.Utilisateur;
 import classused.partie;
 import classused.util.CreateCookie;
-import sql.connexionBD;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 @WebServlet(urlPatterns = "/verification")
@@ -24,7 +25,6 @@ public class repController extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        connexionBD user=new connexionBD();
         int score=0;
         HttpSession session=req.getSession();
         partie part=new partie();
@@ -44,9 +44,9 @@ public class repController extends HttpServlet {
         session.setAttribute("rep",part.getPropositions());
         if(score<0){score=0;}
 
-        if(Integer.parseInt(user.getScore(p))<score){
+        if(Integer.parseInt(Utilisateur.getScore(p))<score){
             System.out.print(p);
-            user.addScore(p,score);
+            Utilisateur.addScore(p,score);
         }
 
         CreateCookie.CreateCookie(req,resp,"score",res);

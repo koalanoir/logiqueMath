@@ -10,7 +10,7 @@ contentType="text/html;charset=UTF-8" language="java" %> <%@ taglib uri="http://
 	</head>
 	<body>
 		<div class="container">
-			<h1>Bienvenue <c:out value="${ sessionScope.pseudo}" /> !</h1>
+			<h1>Bienvenue <c:out value="${ pseudo }" /> !</h1>
 			<form action="evaluation" method="post">
 				<button type="submit">Commencer une serie</button>
 			</form>

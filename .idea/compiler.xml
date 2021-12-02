@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="notation_polonaise" />
         <module name="logiqueMath-bin" />
+        <module name="np" />
       </profile>
     </annotationProcessing>
   </component>
