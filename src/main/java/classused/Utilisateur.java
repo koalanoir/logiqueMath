@@ -1,7 +1,10 @@
 package classused;
+
 import sql.connexionBD;
 
 import java.sql.SQLException;
+import java.util.List;
+
 
 public class Utilisateur {
     static connexionBD user=new connexionBD();
@@ -19,13 +22,16 @@ public class Utilisateur {
     {
         //todo
     }
+
+    //deconnecte un utilisateur
+    public static List getBestScores()
+    {
+        return user.getBestScores();
+    }
     //renvoi le meilleur score de l'utilisateur
-    public static String getScore(String pseudo){
-        String s=user.getScore(pseudo);
-        if(s.equals("")){
-            return "-1";
-        }
-        else return s;
+    public static int getScore(String pseudo){
+        int s=user.getScore(pseudo);
+        return s;
     }
     //met à jour le meilleur score
     public static void addScore(String pseudo,int score){

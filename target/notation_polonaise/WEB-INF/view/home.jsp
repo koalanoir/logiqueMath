@@ -18,8 +18,10 @@
     border: 2px;
     }
     .contener{
-    margin-top: 10%;
-    margin-left:10%;
+        margin-top: 10%;
+        margin-left:10%;
+        display: flex;
+
     }
     a{
     text-decoration: none;
@@ -37,9 +39,19 @@
 </head>
 <body>
 
-<div class="contener"><p>Bienvenu <c:out value="${ pseudo }" /> </p><br/><br/><form action="evaluation" method="post">
+<div class="contener"><div><p>Bienvenu <c:out value="${ sessionScope.pseudo }" /> </p><br/><br/><form action="evaluation" method="post">
     <button type="submit">commencer une serie</button>
 </form></div>
-<a class="bas" href='https://pngtree.com/free-backgrounds'>free background photos from pngtree.com/</a>
+<div>
+    bests scores ever:
+    <c:forEach items="${ sessionScope.bscores }" var="name" >
+        <c:out value="${ name }" />  : </p>
+    </c:forEach>
+</div>
+    <div><form action="deconnect" method="post">
+        <button type="submit">se deconnecter</button>
+    </form></div>
+</div>
+
 </body>
 </html>

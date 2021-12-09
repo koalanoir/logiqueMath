@@ -1,6 +1,8 @@
 package sql;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class connexionBD {
     private Connection connexion;
@@ -43,28 +45,29 @@ public class connexionBD {
     public Statement getStatement() {
         return statement;
     }
-    public String addUser(String log,String pwd,String psd)
+    public void addUser(String log,String pwd,String psd)
     {
         try {
-
-            statement.executeUpdate("INSERT INTO user(login,password,pseudo) VALUES ('"+log+"','"+pwd+"','"+psd+"');");
-            return "inscrription confirmé";
+            PreparedStatement pst = connexion.prepareStatement("INSERT INTO user(login,password,pseudo) VALUES (? , ?, ?)");
+            pst.setString(1, log);
+            pst.setString(2, pwd);
+            pst.setString(3,psd);
+            pst.executeUpdate();
+            System.out.print( "inscrription confirmé");
         }
         catch(SQLException throwables)
         {
             throwables.printStackTrace();
-            return  "erreur pendant l'enregistrement";
         }
     }
     public Boolean isUser(String log, String pwd) throws SQLException {
         ResultSet res=null;
         try {
-            res = statement.executeQuery("SELECT password FROM user WHERE login='" + log + "';");
-            while (res.next()) {
-                if(res.getString("password").equals(pwd)) return true;
-                else return false;
-            }
-            return false;
+            PreparedStatement pst = connexion.prepareStatement("SELECT password FROM user WHERE login= ? AND password = ?");
+            pst.setString(1, log);
+            pst.setString(2, pwd);
+            res = pst.executeQuery();
+            return  res.next();
         }
         catch (SQLException e)
         {
@@ -76,7 +79,10 @@ public class connexionBD {
     {
         ResultSet res=null;
         try {
-            res = statement.executeQuery("SELECT pseudo FROM user WHERE login='" + log + "' AND password='"+pwd+"';");
+            PreparedStatement pst = connexion.prepareStatement("SELECT pseudo FROM user WHERE login= ? AND password = ?");
+            pst.setString(1, log);
+            pst.setString(2, pwd);
+            res = pst.executeQuery();
             while (res.next()) {
                 return res.getString("pseudo");
             }
@@ -88,26 +94,30 @@ public class connexionBD {
             return "";
         }
     }
-    public String getScore(String psd){
+    public int getScore(String psd){
         ResultSet res=null;
         try {
-            res = statement.executeQuery("SELECT meilleur_score FROM jeu WHERE pseudo='" + psd + "' ;");
+            PreparedStatement pst = connexion.prepareStatement("SELECT score FROM jeu WHERE pseudo= ? ");
+            pst.setString(1, psd);
+            res = pst.executeQuery();
             while (res.next()) {
-                return res.getString("meilleur_score");
+                return res.getInt("score");
             }
-            return "";
+            return -1;
         }
         catch (SQLException e)
         {
             System.out.print(e);
-            return "";
+            return -2;
         }
     }
 
     public void addScore(String psd,int s){
         try {
-            statement.executeUpdate("INSERT INTO jeu(pseudo,meilleur_score) VALUES ('"+psd+"','"+s+"');");
-
+            PreparedStatement pst = connexion.prepareStatement("UPDATE jeu SET score=? WHERE pseudo =?");
+            pst.setString(2, psd);
+            pst.setInt(1, s);
+            pst.executeUpdate();
         }
         catch(SQLException throwables)
         {
@@ -115,13 +125,22 @@ public class connexionBD {
         }
     }
 
-    public void reinitScore(String psd){
-        try{
-            statement.executeUpdate("DELETE FROM jeu * WHERE 'pseudo'='"+psd+"';");
+    public List getBestScores(){
+        ResultSet res=null;
+        List scores=new ArrayList();
+        String top="";
+        try {
+            PreparedStatement pst = connexion.prepareStatement("SELECT * FROM jeu ORDER BY score DESC LIMIT 5;");
+            res = pst.executeQuery();
+            while (res.next()) {
+                top=res.getString("pseudo")+ "  :  "+res.getInt("score");
+                scores.add(top);
+            }
         }
-        catch(SQLException throwables)
+        catch (SQLException e)
         {
-            throwables.printStackTrace();
+            System.out.print(e);
         }
+        return scores;
     }
 }

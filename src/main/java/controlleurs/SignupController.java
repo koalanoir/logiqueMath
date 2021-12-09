@@ -1,6 +1,7 @@
 package controlleurs;
 
 import classused.Utilisateur;
+import sql.connexionBD;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import sql.connexionBD;
 
+/***
+ * verifie les champs saisis dans la page d'inscription
+ */
 @WebServlet(urlPatterns = "/verif")
 public class SignupController extends HttpServlet {
     @Override

@@ -48,8 +48,12 @@
         }
     </style>
 </head>
-<h1 style="text-align: center">Calculez chacune des operations ecrit sous forme d'expression en notation polonaise</h1><br/><br/>
+<h1 style="text-align: center">Calculez chacune des operations ecrit sous forme d'expression en notation polonaise</h1> <br/><br/>
 <p style="text-align: center"> chaque mauvaise reponse ou reponse non renseignée vous fera perdre un point</p>
+<p style="text-align: center"> nb: toute division par zero vaut 0 exemple: 2/0 +5/0 =0 et 2+6 + 6/0 = 8</p>
+<p style="text-align: center"> et enfin tous les calculs sont faisable de tete, le programme considere un systeme d'arrandi</p>
+<p style="text-align: center"> c'est à dire : 1/3=0 et 2/3=1</p>
+<p style="text-align: center"> Bonne chance <c:out value="${sessionScope.pseudo}"/>! </p>
 <div class="contener">
     <div class="gauche">
         <form action="verification" method="post">
@@ -77,6 +81,10 @@
     </div>
 
     <div><h1><c:out value="${ score }" /></h1>
+        <form action="home" method="post">
+            <button type="submit">retour</button>
+        </form>
+
 </div></div>
 </body>
 <html/>

@@ -12,9 +12,9 @@ public class StackExpression{
     {
         return 0 + (int)(Math.random() * ((max - 0) + 1));
     }
-
     public static char generateOperator()
     {
+
         String op="-+*/";
         int index=generateFValue(3);
         return (char) op.charAt(index);
@@ -22,6 +22,7 @@ public class StackExpression{
 
     public String getExpNpi(){
         npi=""+generateFValue(9);
+
 		npi+=" ";
         npi+=generateFValue(9);
 		npi+=" ";
@@ -68,7 +69,12 @@ public class StackExpression{
 		}else if(op.equals("*")){
 			return ""+op1*op2;
 		}else if(op.equals("/")) {
-            return "" + op2 / op1;
+			int div=0;
+			if(op1==0){
+				return ""+0;
+			}else {
+				return "" + op2 / op1;
+			}
         }
 
 		return "0";
